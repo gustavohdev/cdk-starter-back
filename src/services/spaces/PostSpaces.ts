@@ -19,6 +19,12 @@ export async function postSpaces( event: APIGatewayProxyEvent, ddbClient: Dynamo
     }))
     console.log(result)
 
+    console.log(event)
+    console.log('my data', {
+        statusCode: 201,
+        body:JSON.stringify({id: randomId})
+    })
+
     return {
         statusCode: 201,
         body:JSON.stringify({id: randomId})
