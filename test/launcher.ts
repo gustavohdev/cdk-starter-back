@@ -1,3 +1,11 @@
-import { handler } from "../src/services/hello";
+import { handler } from "../src/services/spaces/handler";
 
-handler({} as any, {} as any);
+process.env.AWS_REGION = "us-east-1"
+process.env.TABLE_NAME = "SpacesTable-0affca74a325"
+
+handler({
+    httpMethod: "POST",
+    body:JSON.stringify({
+        location: "LONDON DEBUG"
+    })
+} as any, {} as any);
