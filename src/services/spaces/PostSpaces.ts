@@ -13,7 +13,7 @@ export async function postSpaces( event: APIGatewayProxyEvent, ddbClient: Dynamo
                 S:randomId
             },
             location:{
-                S:item.location
+                S:item.location,
             }
         }
     }))
