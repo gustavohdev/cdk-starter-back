@@ -11,14 +11,30 @@ process.env.TABLE_NAME = "SpacesTable-0affca74a325"
 // } as any, {} as any);
 
 handler({
-    httpMethod: "PUT",
-    queryStringParameters:{
-        id: 'b8b0198f-d7c6-42d3-bb6c-5a819cc48ad5' 
-    },
-    body: JSON.stringify({
-        location: 'LONDONCRAZY novo'
+    httpMethod: "POST",
+    body:JSON.stringify({
+        location: "LONDONCRAZY 2"
     })
-} as any, {} as any);
+} as any, {} as any).then((result) => {
+    console.log(result)
+})
+
+// handler({
+//     httpMethod: "DELETE",
+//     queryStringParameters:{
+//         id: 'b8b0198f-d7c6-42d3-bb6c-5a819cc48ad5' 
+//     }
+// } as any, {} as any);
+
+// handler({
+//     httpMethod: "PUT",
+//     queryStringParameters:{
+//         id: 'b8b0198f-d7c6-42d3-bb6c-5a819cc48ad5' 
+//     },
+//     body: JSON.stringify({
+//         location: 'LONDONCRAZY novo'
+//     })
+// } as any, {} as any);
 
 // handler({
 //     httpMethod: "GET",
@@ -30,6 +46,6 @@ handler({
 // handler({
 //     httpMethod: "GET",
 //     queryStringParameters:{
-//         id:'088f4971-2f8f-43fc-a0b2-7a2294d499b4'
+//         id:'b8b0198f-d7c6-42d3-bb6c-5a819cc48ad5'
 //     }
 // } as any, {} as any);

@@ -4,6 +4,8 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { getSpaces } from "./GetSpaces";
 import { postSpacesWithDoc } from "./PostSpacesWithDoc";
 import { updateSpace } from "./UpdateSpace";
+import { deleteSpace } from "./DeleteSpace";
+import { MissingFieldError } from "../shared/Validator";
 
 const ddbClient = new DynamoDBClient({})
 
@@ -14,13 +16,13 @@ async function handler (event: APIGatewayProxyEvent, context: Context):Promise<A
     try{
         switch(event.httpMethod){
             case 'GET':
-                const getResponse = getSpaces(event, ddbClient)
-                console.log( await getResponse)
+                const getResponse = await getSpaces(event, ddbClient)
+                console.log(getResponse)
                 return getResponse
                 break;
     
             case 'POST':
-                const postResponse = postSpaces(event, ddbClient)
+                const postResponse = await postSpaces(event, ddbClient)
                 return postResponse
 
             case 'PUT':
@@ -28,12 +30,23 @@ async function handler (event: APIGatewayProxyEvent, context: Context):Promise<A
             console.log(putResponse)
             return putResponse
 
+            case 'DELETE':
+                const deleteResponse = await deleteSpace(event, ddbClient)
+                console.log(deleteResponse)
+                return deleteResponse
             default:
                 break;
                 
         }
 
     }catch(error){
+        if(error instanceof MissingFieldError){
+            return {
+                statusCode:400,
+                body:JSON.stringify(error.message)
+            }
+        }
+
         console.error(error)
         return {
             statusCode: 500,
