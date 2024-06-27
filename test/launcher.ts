@@ -10,12 +10,12 @@ process.env.TABLE_NAME = "SpacesTable-0affca74a325"
 //     })
 // } as any, {} as any);
 
-// handler({
-//     httpMethod: "GET",
-//     // body:JSON.stringify({
-//     //     location: "LONDON DEBUG"
-//     // })
-// } as any, {} as any);
+handler({
+    httpMethod: "GET",
+    // body:JSON.stringify({
+    //     location: "LONDON DEBUG"
+    // })
+} as any, {} as any);
 
 handler({
     httpMethod: "GET",
