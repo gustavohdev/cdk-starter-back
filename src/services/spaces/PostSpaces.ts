@@ -1,30 +1,35 @@
-import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
-import { marshall } from "@aws-sdk/util-dynamodb";
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { validateAsSpaceEntry } from "../shared/Validator";
-import { createRandomId, parseJSON } from "../shared/Utils";
+import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
+import { marshall } from '@aws-sdk/util-dynamodb';
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { validateAsSpaceEntry } from '../shared/Validator';
+import { createRandomId, parseJSON } from '../shared/Utils';
 
-export async function postSpaces( event: APIGatewayProxyEvent, ddbClient: DynamoDBClient):Promise<APIGatewayProxyResult>{
-    const randomId = createRandomId();
-    const item = parseJSON(event.body)
+export async function postSpaces(
+  event: APIGatewayProxyEvent,
+  ddbClient: DynamoDBClient,
+): Promise<APIGatewayProxyResult> {
+  const randomId = createRandomId();
+  const item = parseJSON(event.body);
 
-    item.id = randomId
-    validateAsSpaceEntry(item)
+  item.id = randomId;
+  validateAsSpaceEntry(item);
 
-    const result = await ddbClient.send(new PutItemCommand({
-        TableName: process.env.TABLE_NAME,
-        Item: marshall(item)
-    }))
-    // console.log(result)
+  const result = await ddbClient.send(
+    new PutItemCommand({
+      TableName: process.env.TABLE_NAME,
+      Item: marshall(item),
+    }),
+  );
+  // console.log(result)
 
-    // console.log(event)
-    // console.log('my data', {
-    //     statusCode: 201,
-    //     body:JSON.stringify({id: randomId})
-    // })
+  // console.log(event)
+  // console.log('my data', {
+  //     statusCode: 201,
+  //     body:JSON.stringify({id: randomId})
+  // })
 
-    return {
-        statusCode: 201,
-        body:JSON.stringify({id: randomId})
-    }
+  return {
+    statusCode: 201,
+    body: JSON.stringify({ id: randomId }),
+  };
 }
