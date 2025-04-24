@@ -13,19 +13,25 @@ Amplify.configure({
 });
 
 export class AuthService {
-  public async login(username: string, password: string) {
-    const signInOutput: SignInOutput = await signIn({
-      username: username,
-      password: password,
-      options: {
-        authFlowType: 'USER_PASSWORD_AUTH',
-      },
-    });
+
+  public async login(userName: string, password: string) {
+      const signInOutput: SignInOutput = await signIn({
+          username: userName,
+          password: password,
+          options: {
+              authFlowType: 'USER_PASSWORD_AUTH'
+          }
+      });
+      return signInOutput;
   }
 
-  // call after login
-  public async getIdToken() {
-    const authSession = await fetchAuthSession();
-    const idToken = authSession.tokens.idToken?.toString();
+  /**
+   * call only after login
+   */
+  public async getIdToken(){
+      const authSession = await fetchAuthSession();
+      return authSession.tokens?.idToken?.toString();
+
   }
+
 }

@@ -6,7 +6,6 @@ import {
 import { postSpaces } from './PostSpaces';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { getSpaces } from './GetSpaces';
-import { postSpacesWithDoc } from './PostSpacesWithDoc';
 import { updateSpace } from './UpdateSpace';
 import { deleteSpace } from './DeleteSpace';
 import { JsonError, MissingFieldError } from '../shared/Validator';

@@ -1,45 +1,53 @@
-import * as cdk from 'aws-cdk-lib';
-import { AttributeType, ITable, Table } from 'aws-cdk-lib/aws-dynamodb';
+import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib'
+import { CfnUserPoolGroup, UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
+import { CfnUserGroup } from 'aws-cdk-lib/aws-elasticache';
 import { Construct } from 'constructs';
-import { UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
 
-export class AuthStack extends cdk.Stack {
-  public readonly spacesTable: ITable;
-  private userPool: UserPool;
-  private userPoolClient: UserPoolClient;
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
 
-    this.createUserPool();
-    this.createUserPoolCLient();
-  }
+export class AuthStack extends Stack {
 
-  private createUserPool() {
-    this.userPool = new UserPool(this, 'SpaceUserPool', {
-      selfSignUpEnabled: true,
-      signInAliases: {
-        phone: true,
-        username: true,
-      },
-    });
+    public userPool: UserPool;
+    private userPoolClient: UserPoolClient;
 
-    new cdk.CfnOutput(this, 'SpaceUserPoolId', {
-      value: this.userPool.userPoolId,
-    });
-  }
+    constructor(scope: Construct, id: string, props?: StackProps) {
+        super(scope, id, props);
 
-  private createUserPoolCLient() {
-    this.userPoolClient = this.userPool.addClient('SpaceUserPoolClient', {
-      authFlows: {
-        adminUserPassword: true,
-        custom: true,
-        userPassword: true,
-        userSrp: true,
-      },
-    });
+        this.createUserPool();
+        this.createUserPoolClient();
+        this.createAdminsGroup();
+    }
 
-    new cdk.CfnOutput(this, 'SpaceUserPoolClientId', {
-      value: this.userPoolClient.userPoolClientId,
-    });
-  }
+    private createUserPool(){
+        this.userPool = new UserPool(this, 'SpaceUserPool', {
+            selfSignUpEnabled: true,
+            signInAliases: {
+                username: true,
+                phone: true
+            }
+        });
+
+        new CfnOutput(this, 'SpaceUserPoolId', {
+            value: this.userPool.userPoolId
+        })
+    }
+    private createUserPoolClient(){
+        this.userPoolClient = this.userPool.addClient('SpaceUserPoolClient', {
+            authFlows: {
+                adminUserPassword: true,
+                custom: true,
+                userPassword: true,
+                userSrp: true
+            }
+        });
+        new CfnOutput(this, 'SpaceUserPoolClientId', {
+            value: this.userPoolClient.userPoolClientId
+        })
+    }
+
+    private createAdminsGroup(){
+        new CfnUserPoolGroup(this, 'SpaceAdmins', {
+            userPoolId: this.userPool.userPoolId,
+            groupName: 'admins2'
+        })
+    }
 }
