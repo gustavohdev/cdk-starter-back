@@ -16,6 +16,7 @@
     "aws-cdk-lib": "^2.144.0",
     "constructs": "^10.3.0",
     "esbuild": "^0.21.5",
+    "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
