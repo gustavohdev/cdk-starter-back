@@ -6,8 +6,8 @@ const awsRegion = 'us-east-1';
 Amplify.configure({
   Auth: {
     Cognito: {
-      userPoolId: 'us-east-1_f5fb8wUYO',
-      userPoolClientId: '1hfmr93vi5l2hekbgvbbh7hhl6',
+      userPoolId: 'us-east-1_Dz2In2pRv',
+      userPoolClientId: 'q94354v0l3j2selnadppduuo9',
     },
   },
 });
