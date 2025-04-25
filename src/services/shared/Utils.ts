@@ -16,7 +16,7 @@ export function parseJSON(arg: string) {
 export function hasAdminGroup (event:APIGatewayProxyEvent){
   const groups = event.requestContext.authorizer?.claims['cognito:groups'];
   if (groups) {
-      return (groups as string).includes('admins');
+      return (groups as string).includes('admins2');
   }
   return false;
 } 

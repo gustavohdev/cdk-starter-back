@@ -54,7 +54,7 @@ export class AuthStack extends Stack {
     private createAdminsGroup(){
         new CfnUserPoolGroup(this, 'SpaceAdmins', {
             userPoolId: this.userPool.userPoolId,
-            groupName: 'admins',
+            groupName: 'admins2',
             roleArn: this.adminRole.roleArn
         })
     }
@@ -84,6 +84,13 @@ export class AuthStack extends Stack {
                 'sts:AssumeRoleWithWebIdentity'
             )
         });
+        this.authenticatedRole.addToPolicy(new PolicyStatement({
+            effect: Effect.ALLOW,
+            actions: [
+                's3:ListAllMyBuckets'
+            ],
+            resources: ['*']
+        }))
         this.unAuthenticatedRole = new Role(this, 'CognitoDefaultUnauthenticatedRole', {
             assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
                 StringEquals: {

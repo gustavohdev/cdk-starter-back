@@ -16,7 +16,8 @@ async function testAuth() {
 
 async function listBuckets(credentials) {
     const client = new S3Client({
-        credentials: credentials
+        credentials: credentials,
+        region: 'us-east-1',
     });
     const command = new ListBucketsCommand({});
     const result = await client.send(command);

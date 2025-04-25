@@ -1,7 +1,7 @@
 import { handler } from '../src/services/spaces/handler';
 
 process.env.AWS_REGION = 'us-east-1';
-process.env.TABLE_NAME = 'SpacesTable-0affca74a325';
+process.env.TABLE_NAME = 'SpacesTable-0affc0d36e9d';
 
 // handler({
 //     httpMethod: "POST",
