@@ -1,7 +1,6 @@
 import { Stack, StackProps } from 'aws-cdk-lib'
 import { AuthorizationType, CognitoUserPoolsAuthorizer, LambdaIntegration, MethodOptions, RestApi } from 'aws-cdk-lib/aws-apigateway';
 import { IUserPool } from 'aws-cdk-lib/aws-cognito';
-import { AuthorizationToken } from 'aws-cdk-lib/aws-ecr';
 import { Construct } from 'constructs';
 
 interface ApiStackProps extends StackProps {

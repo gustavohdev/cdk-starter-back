@@ -5,7 +5,6 @@ import { getSuffixFromStack } from '../Utils';
 import { Bucket, IBucket, HttpMethods, CorsRule, BucketAccessControl } from 'aws-cdk-lib/aws-s3';
 import { Distribution, OriginAccessIdentity, AllowedMethods } from 'aws-cdk-lib/aws-cloudfront';
 import { S3Origin } from 'aws-cdk-lib/aws-cloudfront-origins';
-import { ArnPrincipal, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 export class DataStack extends cdk.Stack {
 

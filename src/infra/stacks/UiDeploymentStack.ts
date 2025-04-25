@@ -1,5 +1,4 @@
 import { CfnOutput, Stack, StackProps } from "aws-cdk-lib";
-import { CloudFrontWebDistribution } from "aws-cdk-lib/aws-cloudfront";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
