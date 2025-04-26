@@ -1,10 +1,15 @@
 {
   "DataStack": {
+    "ExportsOutputFnGetAttSpaceFinderPhotosE708E252Arn354BE01C": "arn:aws:s3:::space-finder-photos-0affc5cb1a07",
     "ExportsOutputRefSpaceFinderFrontend8E9921E539ACA1C2": "space-finder-frontend-0affc5cb1a07",
     "ExportsOutputFnGetAttSpaceFinderFrontend8E9921E5WebsiteURL02C17629": "http://space-finder-frontend-0affc5cb1a07.s3-website-us-east-1.amazonaws.com",
     "ExportsOutputRefSpacesTable8A9973559FB4B87D": "SpacesTable-0affc5cb1a07",
+    "SpaceFinderPhotosBucketName": "space-finder-photos-0affc5cb1a07",
     "ExportsOutputFnGetAttSpacesTable8A997355Arn242927FE": "arn:aws:dynamodb:us-east-1:851725591249:table/SpacesTable-0affc5cb1a07",
     "ExportsOutputFnGetAttSpaceFinderFrontend8E9921E5ArnA5AA9F6B": "arn:aws:s3:::space-finder-frontend-0affc5cb1a07"
+  },
+  "LambdaStack": {
+    "ExportsOutputFnGetAttHelloLambda3D9C82D6ArnAF912CE6": "arn:aws:lambda:us-east-1:851725591249:function:LambdaStack-HelloLambda3D9C82D6-l22YrF3dP3Jc"
   },
   "AuthStack": {
     "ExportsOutputFnGetAttSpaceUserPool6AB542DCArnC2E21F85": "arn:aws:cognito-idp:us-east-1:851725591249:userpool/us-east-1_XIKfhMZUb",
@@ -14,9 +19,6 @@
   },
   "UiDeploymentStack": {
     "spacefinderuideploymentS3Url": "http://space-finder-frontend-0affc5cb1a07.s3-website-us-east-1.amazonaws.com"
-  },
-  "LambdaStack": {
-    "ExportsOutputFnGetAttHelloLambda3D9C82D6ArnAF912CE6": "arn:aws:lambda:us-east-1:851725591249:function:LambdaStack-HelloLambda3D9C82D6-l22YrF3dP3Jc"
   },
   "ApiStack": {
     "SpacesApiEndpoint36C4F3B6": "https://bguulz40gd.execute-api.us-east-1.amazonaws.com/prod/"

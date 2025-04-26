@@ -4,7 +4,7 @@ import { AuthService } from "./AuthService";
 
 async function testAuth() {
     const service = new AuthService();
-    const loginResult = await service.login('gustavo', 'Gh180493$10');
+    const loginResult = await service.login('gustavo', 'AwesomeGuy$1000');
     const idToken = await service.getIdToken();
     
 
