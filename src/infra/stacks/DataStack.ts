@@ -27,7 +27,7 @@ export class DataStack extends cdk.Stack {
       bucketName: `space-finder-frontend-${suffix}`,
       blockPublicAccess: cdk.aws_s3.BlockPublicAccess.BLOCK_ALL,
       accessControl: BucketAccessControl.PRIVATE,
-      cors: [s3CorsRule],
+      cors: [s3CorsRule], 
     });
 
     const oai = new OriginAccessIdentity(this, 'OAI');

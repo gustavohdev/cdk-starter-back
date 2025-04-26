@@ -1,6 +1,6 @@
 import { CfnOutput, Stack, StackProps } from "aws-cdk-lib";
 import { IBucket } from "aws-cdk-lib/aws-s3";
-import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
+import { BucketDeployment, CacheControl, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { existsSync } from "fs";
 import { join } from "path";
@@ -21,7 +21,9 @@ export class UiDeploymentStack extends Stack {
                 destinationBucket: props.deploymentBucket,
                 sources: [
                     Source.asset(uiDir)
-                ]
+                ],
+                prune: true, // Removes files from the bucket that are no longer in the dist/ folder
+                cacheControl: [CacheControl.noCache(), CacheControl.noStore()] // Optional: disable caching for fresh deployment
             })
 
             new CfnOutput(this, 'space-finder-ui-deploymentS3Url', {
