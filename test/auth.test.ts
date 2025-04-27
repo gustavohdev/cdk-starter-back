@@ -12,6 +12,7 @@ async function testAuth() {
   console.log(buckets);
 }
 
+// It is trying to get all buckets, and now it's configured to just one
 async function listBuckets(credentials) {
   const client = new S3Client({
     credentials: credentials,
