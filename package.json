@@ -19,7 +19,8 @@
     "esbuild": "^0.21.5",
     "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "dotenv": "^16.5.0"
   },
   "dependencies": {
     "@aws-amplify/auth": "^6.12.3",
