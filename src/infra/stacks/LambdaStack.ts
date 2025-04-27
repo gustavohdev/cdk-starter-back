@@ -1,6 +1,6 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
+import { Duration, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Runtime, Tracing } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { join } from 'path';
 import { LambdaIntegration } from 'aws-cdk-lib/aws-apigateway';
@@ -24,6 +24,8 @@ export class LambdaStack extends Stack {
       environment: {
         TABLE_NAME: props.spacesTable.tableName,
       },
+      tracing: Tracing.ACTIVE,
+      timeout: Duration.seconds(30),
     });
 
     spacesLambda.addToRolePolicy(
