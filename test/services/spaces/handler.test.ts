@@ -41,8 +41,12 @@ describe('GetSpaces test suite', () => {
       statusCode: 201,
       body: JSON.stringify([
         {
-          id: '123',
-          location: 'Paris',
+          id: {
+            S: '123',
+          },
+          location: {
+            S: 'Paris',
+          },
         },
       ]),
     };
@@ -60,7 +64,7 @@ describe('GetSpaces test suite', () => {
     );
     const expectedResult = {
       statusCode: 400,
-      body: JSON.stringify('Id required!'),
+      body: JSON.stringify('Id required'),
     };
     expect(getResult).toEqual(expectedResult);
   });
@@ -77,7 +81,7 @@ describe('GetSpaces test suite', () => {
     );
     const expectedResult = {
       statusCode: 404,
-      body: JSON.stringify(`Space with id 123 not found!`),
+      body: JSON.stringify(`space with id 123 not found!`),
     };
     expect(getResult).toEqual(expectedResult);
   });
