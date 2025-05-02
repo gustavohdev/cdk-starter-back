@@ -1,7 +1,8 @@
 import { handler } from '../src/services/spaces/handler';
 
+// This is a test file to run the handler function locally
 process.env.AWS_REGION = 'us-east-1';
-process.env.TABLE_NAME = 'SpacesTable-0affca74a325';
+process.env.TABLE_NAME = 'table name';
 
 // handler({
 //     httpMethod: "POST",

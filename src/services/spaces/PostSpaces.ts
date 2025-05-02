@@ -6,7 +6,7 @@ import { createRandomId, parseJSON } from '../shared/Utils';
 
 export async function postSpaces(
   event: APIGatewayProxyEvent,
-  ddbClient: DynamoDBClient,
+  ddbClient: DynamoDBClient
 ): Promise<APIGatewayProxyResult> {
   const randomId = createRandomId();
   const item = parseJSON(event.body);
@@ -18,16 +18,8 @@ export async function postSpaces(
     new PutItemCommand({
       TableName: process.env.TABLE_NAME,
       Item: marshall(item),
-    }),
+    })
   );
-  // console.log(result)
-
-  // console.log(event)
-  // console.log('my data', {
-  //     statusCode: 201,
-  //     body:JSON.stringify({id: randomId})
-  // })
-
   return {
     statusCode: 201,
     body: JSON.stringify({ id: randomId }),
