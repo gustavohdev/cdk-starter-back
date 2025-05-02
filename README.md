@@ -1,19 +1,72 @@
 ## Below you find the structure that is avaiable in this github repository
 
-# You can anytime comment a stack and have few resources and understand each part
+![Architecture Diagram](./diagram.png)
 
-# For running the whole stack you only need a small experience with cdk and this in your .env file
+🚀 Getting Started
+Prerequisites
+To deploy and test this project, you'll need:
 
-## Always needed, put yours
+Basic experience with AWS CDK
 
-``AWS_REGION=us-east-1
+An AWS account with appropriate permissions
 
-## For the webhook to work you need to put something in here and for the stack to construct correctly as well
+Node.js and npm installed
 
-``WEBHOOK_URL=https://hooks.slack.com/services/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
+Create a .env file in the root of the project with the following values:
 
-## These variable are only need for testing the AuthService.ts
+# Required for all deployments
 
-`USERPOOL_ID=us-east-1_XIKfhMZUb
-USERPOOL_CLIENT_ID=5tp97h111llf07vqtagr97amts
-IDENTITY_POOL_ID=us-east-1:b68ddda1-a664-487a-9ef3-bb5e0893eaeb`
+AWS_REGION=us-east-1
+
+# Required for Webhook integration (e.g., Slack)
+
+WEBHOOK_URL=https://hooks.slack.com/services/...
+
+# Required only for testing AuthService.ts
+
+USERPOOL_ID=us-east-1_XXXXXXX
+USERPOOL_CLIENT_ID=XXXXXXXXXXXXXX
+IDENTITY_POOL_ID=us-east-1:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+## Authentication
+
+To enable authentication and test the flow:
+
+Create a user in the Cognito User Pool.
+
+Create and assign the user to the admins2 group (created by the stack).
+
+Confirm the user’s password using the AWS CLI:
+
+aws cognito-idp admin-set-user-password \
+ --user-pool-id us-east-1_XXXXXXX \
+ --username <your-username> \
+ --password "<YourSecurePassword123>" \
+ --permanent \
+ --region us-east-1
+
+Once confirmed, you’ll be able to retrieve a valid JWT idToken.
+
+## Full Stack Deployment
+
+To deploy all stacks:
+npm run deploy
+
+Make sure your .env file is set up correctly. CDK will output important references used by other stacks (e.g., frontend consuming backend API URLs).
+
+## ## UI DEPLOYMENT STACK OR ONLY API SERVICE
+
+UI Deployment Optional
+If you only want to deploy the backend (API service), comment out the UI deployment stack in the CDK app.
+
+If you want the full deployment (backend + frontend):
+
+Place both cdk-starter-back and cdk-starter-front in the same parent directory (but not nested inside each other).
+
+Ensure both stacks can reference each other's output.
+
+Run:npm run deploy
+
+You can freely comment out any stack in src/infra/Launcher.ts to test it in isolation.
+
+This setup is ideal for learning how each AWS service works in context (e.g., Lambda, Cognito, API Gateway, CloudFront, etc.).
